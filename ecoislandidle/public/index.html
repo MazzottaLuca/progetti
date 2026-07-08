@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#1a5c3a">
+    <title>Eco Island Clicker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="eco_island_assets/ui/app_icon.svg">
+</head>
+<body>
+    <!-- SEZIONE SUPERIORE: ISOLA E STATISTICHE -->
+    <div class="game-container">
+        <div class="island-section">
+            <!-- Barra header con punti e PPS -->
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <img src="eco_island_assets/ui/icon_natura_points.svg" alt="Natura" class="stat-icon">
+                    <div class="stat-content">
+                        <span class="stat-label">Punti Natura</span>
+                        <span id="puntiDisplay" class="stat-value">0</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Produzione</span>
+                    <span id="ppsDisplay" class="stat-value pps">0/s</span>
+                </div>
+            </div>
+
+            <!-- Barra Survival a Tempo -->
+            <div class="survival-bar">
+                <div class="survival-info">
+                    <div class="survival-target">Prossimo traguardo: <strong id="survivalTargetDisplay">100</strong> punti</div>
+                    <div class="survival-timer" id="survivalTimerText">Tempo rimasto: <strong id="survivalTimerDisplay">30</strong>s</div>
+                </div>
+                <button id="irrigaBtn" class="irriga-btn" disabled>Irriga 🌊</button>
+            </div>
+
+            <!-- Isola cliccabile con Timer -->
+            <div class="island-container">
+                <div class="timer-circle">
+                    <span id="timerDisplay">10</span>
+                    <span class="timer-label">s</span>
+                </div>
+                <button id="islandBtn" class="island-btn">
+                    <span class="island-emoji">🏝️</span>
+                    <span class="click-text">+<span id="clickValue">1</span></span>
+                </button>
+            </div>
+
+            <!-- Info bottone click -->
+            <div class="click-info">
+                Clicca l'isola per guadagnare Natura!
+            </div>
+        </div>
+
+        <!-- SEZIONE INFERIORE: SHOP POTENZIAMENTI -->
+        <div class="shop-section">
+            <h2 class="shop-title">Potenziamenti 🌱</h2>
+            <div id="upgradesContainer" class="upgrades-grid">
+                <!-- I bottoni dei potenziamenti verranno generati da app.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Particelle floating di effetto (opzionale) -->
+    <div id="particlesContainer" class="particles-container"></div>
+
+    <script src="app.js"></script>
+    <script>
+        // Registra il Service Worker per funzionamento offline
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+                .then(() => console.log('✅ Service Worker registrato'))
+                .catch(err => console.warn('⚠️ Service Worker error:', err));
+        }
+    </script>
+</body>
+</html>

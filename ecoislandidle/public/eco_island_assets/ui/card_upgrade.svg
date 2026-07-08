@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 100" width="340" height="100">
+  <defs>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f0fce8"/>
+      <stop offset="100%" stop-color="#d4efc0"/>
+    </linearGradient>
+    <filter id="cardShadow">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#1a601044"/>
+    </filter>
+  </defs>
+
+  <!-- Card shadow -->
+  <rect x="4" y="6" width="332" height="92" rx="16" fill="#1a5010" opacity="0.15" filter="url(#cardShadow)"/>
+
+  <!-- Card body -->
+  <rect x="2" y="2" width="336" height="94" rx="15" fill="#1a6010" opacity="0.8"/>
+  <rect x="3" y="3" width="334" height="92" rx="14" fill="url(#cardGrad)"/>
+
+  <!-- Left accent strip -->
+  <rect x="3" y="3" width="6" height="92" rx="3" fill="#50a030"/>
+
+  <!-- Subtle inner border -->
+  <rect x="5" y="5" width="330" height="88" rx="12" fill="none" stroke="#70c040" stroke-width="1" opacity="0.4"/>
+
+  <!-- Corner leaf decoration top right -->
+  <g transform="translate(310,8)" opacity="0.25">
+    <path d="M0,0 C12,-4 20,4 16,16 C12,24 4,26 0,28" fill="#2a8010"/>
+    <line x1="0" y1="0" x2="0" y2="26" stroke="#2a8010" stroke-width="1.5"/>
+  </g>
+</svg>

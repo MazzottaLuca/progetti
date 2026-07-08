@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 640" width="360" height="640">
+  <defs>
+    <radialGradient id="skyMid" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#7aaccc"/>
+      <stop offset="100%" stop-color="#4a7a9a"/>
+    </radialGradient>
+    <radialGradient id="seaMid" cx="50%" cy="60%" r="60%">
+      <stop offset="0%" stop-color="#3a7a9a"/>
+      <stop offset="100%" stop-color="#1a4a6a"/>
+    </radialGradient>
+    <filter id="blur3">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+    <filter id="blur5">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+  </defs>
+
+  <!-- Sky - partially clear -->
+  <rect width="360" height="640" fill="url(#skyMid)"/>
+
+  <!-- Light smog remnants -->
+  <ellipse cx="80" cy="90" rx="70" ry="28" fill="#9ab0c0" opacity="0.4" filter="url(#blur5)"/>
+  <ellipse cx="280" cy="110" rx="60" ry="22" fill="#9ab0c0" opacity="0.35" filter="url(#blur5)"/>
+
+  <!-- White clouds emerging -->
+  <ellipse cx="150" cy="70" rx="65" ry="28" fill="#d0e8f0" opacity="0.7" filter="url(#blur3)"/>
+  <ellipse cx="260" cy="85" rx="50" ry="20" fill="#cce4ee" opacity="0.65" filter="url(#blur3)"/>
+  <ellipse cx="60" cy="100" rx="45" ry="18" fill="#c8e0ea" opacity="0.5" filter="url(#blur3)"/>
+
+  <!-- Sun - partially visible -->
+  <circle cx="300" cy="80" r="32" fill="#f0cc50" opacity="0.55" filter="url(#blur5)"/>
+  <circle cx="300" cy="80" r="22" fill="#f5d860" opacity="0.7"/>
+  <circle cx="300" cy="80" r="14" fill="#fff0a0" opacity="0.8"/>
+
+  <!-- Sea -->
+  <rect x="0" y="480" width="360" height="160" fill="#1a5a7a"/>
+  <ellipse cx="180" cy="560" rx="240" ry="120" fill="url(#seaMid)" opacity="0.8"/>
+
+  <!-- Sea waves (blueish now) -->
+  <path d="M0 490 Q45 480 90 490 Q135 500 180 490 Q225 480 270 490 Q315 500 360 490" fill="none" stroke="#2a7a9a" stroke-width="2" opacity="0.7"/>
+  <path d="M0 512 Q45 502 90 512 Q135 522 180 512 Q225 502 270 512 Q315 522 360 512" fill="none" stroke="#2a7a9a" stroke-width="2" opacity="0.6"/>
+  <path d="M0 533 Q45 523 90 533 Q135 543 180 533 Q225 523 270 533 Q315 543 360 533" fill="none" stroke="#2a7a9a" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Island base -->
+  <ellipse cx="180" cy="430" rx="160" ry="60" fill="#6a7050"/>
+  <ellipse cx="180" cy="420" rx="155" ry="55" fill="#7a8060"/>
+
+  <!-- Island ground (mix of brown and green patches) -->
+  <ellipse cx="180" cy="415" rx="150" ry="50" fill="#8a8a60"/>
+  <!-- Green patches -->
+  <ellipse cx="130" cy="410" rx="45" ry="18" fill="#6a9050" opacity="0.8"/>
+  <ellipse cx="230" cy="418" rx="35" ry="14" fill="#6a9050" opacity="0.7"/>
+  <ellipse cx="180" cy="425" rx="25" ry="10" fill="#6a9050" opacity="0.6"/>
+
+  <!-- Path/dirt areas still brown -->
+  <ellipse cx="170" cy="408" rx="30" ry="10" fill="#7a6a40" opacity="0.5"/>
+
+  <!-- Small young tree (new growth) -->
+  <rect x="128" y="370" width="8" height="38" rx="2" fill="#5a3a20"/>
+  <ellipse cx="132" cy="362" rx="18" ry="16" fill="#4a7a30"/>
+  <ellipse cx="125" cy="370" rx="12" ry="10" fill="#5a8a38"/>
+  <ellipse cx="140" cy="368" rx="10" ry="9" fill="#4a7a30"/>
+
+  <!-- Partial stump remaining -->
+  <rect x="215" y="383" width="10" height="30" rx="3" fill="#5a4a30"/>
+  <ellipse cx="220" cy="383" rx="8" ry="5" fill="#4a3a20"/>
+
+  <!-- Small bushes (green) -->
+  <ellipse cx="155" cy="408" rx="16" ry="9" fill="#5a8840"/>
+  <ellipse cx="205" cy="415" rx="13" ry="7" fill="#5a8840"/>
+  <ellipse cx="245" cy="412" rx="10" ry="6" fill="#5a8840"/>
+
+  <!-- Flowers (tiny) -->
+  <circle cx="165" cy="403" r="3" fill="#f0c030"/>
+  <circle cx="195" cy="406" r="2.5" fill="#e06080"/>
+  <circle cx="240" cy="409" r="2" fill="#f0c030"/>
+
+  <!-- Less trash in sea -->
+  <rect x="70" y="508" width="8" height="5" rx="1" fill="#8a7a50" opacity="0.4"/>
+</svg>

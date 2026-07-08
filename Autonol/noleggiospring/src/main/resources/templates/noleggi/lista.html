@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noleggi | AutoNol</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="navbar-brand">
+                    <span class="brand-icon">🚗</span>
+                    AutoNol
+                </a>
+                <button class="navbar-toggle" onclick="document.querySelector('.navbar-nav').classList.toggle('show')">☰</button>
+                <ul class="navbar-nav">
+                    <li><a th:href="@{/}"><span class="nav-icon">🏠</span> Home</a></li>
+                    <li><a th:href="@{/auto}"><span class="nav-icon">🚘</span> Auto</a></li>
+                    <li><a th:href="@{/clienti}"><span class="nav-icon">👥</span> Clienti</a></li>
+                    <li><a th:href="@{/noleggi}" class="active"><span class="nav-icon">📋</span> Noleggi</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="container">
+                <!-- Messaggi flash -->
+                <div th:if="${messaggio}" class="alert alert-success fade-in">
+                    <span>✅</span>
+                    <span th:text="${messaggio}"></span>
+                </div>
+
+                <!-- HEADER -->
+                <div class="section-header">
+                    <div>
+                        <h1 class="section-title">📋 Noleggi</h1>
+                        <p class="section-subtitle">Gestisci le prenotazioni e i noleggi</p>
+                    </div>
+                    <a th:href="@{/noleggi/nuovo}" class="btn btn-primary">
+                        ➕ Nuovo Noleggio
+                    </a>
+                </div>
+
+                <!-- FILTRI STATO -->
+                <div class="filtri-bar">
+                    <a th:href="@{/noleggi}" class="filtro-btn"
+                       th:classappend="${statoFiltro == null ? 'active' : ''}">
+                        Tutti
+                    </a>
+                    <a th:href="@{/noleggi(stato='ATTIVO')}" class="filtro-btn"
+                       th:classappend="${statoFiltro == 'ATTIVO' ? 'active' : ''}">
+                        🔵 Attivi
+                    </a>
+                    <a th:href="@{/noleggi(stato='COMPLETATO')}" class="filtro-btn"
+                       th:classappend="${statoFiltro == 'COMPLETATO' ? 'active' : ''}">
+                        🟢 Completati
+                    </a>
+                    <a th:href="@{/noleggi(stato='ANNULLATO')}" class="filtro-btn"
+                       th:classappend="${statoFiltro == 'ANNULLATO' ? 'active' : ''}">
+                        🔴 Annullati
+                    </a>
+                </div>
+
+                <!-- TABELLA -->
+                <div th:if="${!#lists.isEmpty(listaNoleggi)}" class="table-container fade-in">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Auto</th>
+                                <th>Cliente</th>
+                                <th>Periodo</th>
+                                <th>Prezzo Totale</th>
+                                <th>Stato</th>
+                                <th>Azioni</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="noleggio : ${listaNoleggi}">
+                                <td>
+                                    <span class="cell-primary" th:text="'#' + ${noleggio.id}">#1</span>
+                                </td>
+                                <td>
+                                    <div class="cell-primary" th:text="${noleggio.auto.marca + ' ' + noleggio.auto.modello}">Auto</div>
+                                    <div class="cell-secondary" th:text="${noleggio.auto.targa}">Targa</div>
+                                </td>
+                                <td>
+                                    <div class="cell-primary" th:text="${noleggio.cliente.nome + ' ' + noleggio.cliente.cognome}">Cliente</div>
+                                    <div class="cell-secondary" th:text="${noleggio.cliente.email}">Email</div>
+                                </td>
+                                <td>
+                                    <div class="cell-primary" th:text="${#temporals.format(noleggio.dataInizio, 'dd/MM/yyyy') + ' → ' + #temporals.format(noleggio.dataFine, 'dd/MM/yyyy')}">Date</div>
+                                </td>
+                                <td>
+                                    <span class="cell-primary" th:text="'€ ' + ${#numbers.formatDecimal(noleggio.prezzoTotale, 1, 2)}">€ 0.00</span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-attivo" th:if="${noleggio.stato == 'ATTIVO'}">🔵 Attivo</span>
+                                    <span class="badge badge-completato" th:if="${noleggio.stato == 'COMPLETATO'}">✅ Completato</span>
+                                    <span class="badge badge-annullato" th:if="${noleggio.stato == 'ANNULLATO'}">❌ Annullato</span>
+                                </td>
+                                <td>
+                                    <div class="action-group" th:if="${noleggio.stato == 'ATTIVO'}">
+                                        <form th:action="@{/noleggi/{id}/completa(id=${noleggio.id})}" method="post" style="display:inline;">
+                                            <button type="submit" class="btn btn-success btn-sm" title="Completa noleggio">✅ Completa</button>
+                                        </form>
+                                        <form th:action="@{/noleggi/{id}/annulla(id=${noleggio.id})}" method="post" style="display:inline;"
+                                              onsubmit="return confirm('Sei sicuro di voler annullare questo noleggio?')">
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Annulla noleggio">❌</button>
+                                        </form>
+                                    </div>
+                                    <span th:if="${noleggio.stato != 'ATTIVO'}" style="color:var(--text-muted); font-size:0.8rem;">—</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Stato vuoto -->
+                <div th:if="${#lists.isEmpty(listaNoleggi)}" class="empty-state">
+                    <div class="empty-icon">📋</div>
+                    <h3 class="empty-title">Nessun noleggio trovato</h3>
+                    <p class="empty-text">Non ci sono noleggi per i filtri selezionati.</p>
+                    <a th:href="@{/noleggi/nuovo}" class="btn btn-primary">
+                        ➕ Crea Nuovo Noleggio
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <span class="footer-brand">🚗 AutoNol</span>
+                    <span class="footer-text">© 2024 AutoNol — Noleggio Auto Premium. Tutti i diritti riservati.</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

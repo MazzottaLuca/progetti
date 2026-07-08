@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${isModifica ? 'Modifica Cliente' : 'Nuovo Cliente'} + ' | AutoNol'">Form Cliente | AutoNol</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="navbar-brand">
+                    <span class="brand-icon">🚗</span>
+                    AutoNol
+                </a>
+                <button class="navbar-toggle" onclick="document.querySelector('.navbar-nav').classList.toggle('show')">☰</button>
+                <ul class="navbar-nav">
+                    <li><a th:href="@{/}"><span class="nav-icon">🏠</span> Home</a></li>
+                    <li><a th:href="@{/auto}"><span class="nav-icon">🚘</span> Auto</a></li>
+                    <li><a th:href="@{/clienti}" class="active"><span class="nav-icon">👥</span> Clienti</a></li>
+                    <li><a th:href="@{/noleggi}"><span class="nav-icon">📋</span> Noleggi</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="container">
+                <!-- BREADCRUMB -->
+                <div class="breadcrumb">
+                    <a th:href="@{/}">Home</a>
+                    <span class="separator">›</span>
+                    <a th:href="@{/clienti}">Clienti</a>
+                    <span class="separator">›</span>
+                    <span class="current" th:text="${isModifica ? 'Modifica Cliente' : 'Nuovo Cliente'}">Form</span>
+                </div>
+
+                <div class="form-container fade-in">
+                    <h1 class="form-title" th:text="${isModifica ? '✏️ Modifica Cliente' : '➕ Nuovo Cliente'}">Form Cliente</h1>
+                    <p class="form-subtitle" th:text="${isModifica ? 'Modifica i dati del cliente' : 'Inserisci i dati del nuovo cliente'}">Sottotitolo</p>
+
+                    <form th:action="@{/clienti/salva}" th:object="${cliente}" method="post">
+                        <input type="hidden" th:field="*{id}">
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="nome">Nome</label>
+                                <input type="text" id="nome" th:field="*{nome}" placeholder="es. Marco" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cognome">Cognome</label>
+                                <input type="text" id="cognome" th:field="*{cognome}" placeholder="es. Rossi" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" th:field="*{email}" placeholder="es. marco.rossi@email.it" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="telefono">Telefono</label>
+                                <input type="tel" id="telefono" th:field="*{telefono}" placeholder="es. +39 333 1234567">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="codiceFiscale">Codice Fiscale</label>
+                                <input type="text" id="codiceFiscale" th:field="*{codiceFiscale}" placeholder="es. RSSMRC85M01H501Z" maxlength="16" required
+                                       style="text-transform: uppercase;">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dataRegistrazione">Data Registrazione</label>
+                                <input type="date" id="dataRegistrazione" th:field="*{dataRegistrazione}">
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="indirizzo">Indirizzo</label>
+                                <input type="text" id="indirizzo" th:field="*{indirizzo}" placeholder="es. Via Roma 15, 00100 Roma">
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                💾 Salva Cliente
+                            </button>
+                            <a th:href="@{/clienti}" class="btn btn-secondary btn-lg">
+                                ← Annulla
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <span class="footer-brand">🚗 AutoNol</span>
+                    <span class="footer-text">© 2024 AutoNol — Noleggio Auto Premium. Tutti i diritti riservati.</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

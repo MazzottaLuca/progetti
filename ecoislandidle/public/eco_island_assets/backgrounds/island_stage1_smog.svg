@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 640" width="360" height="640">
+  <!-- Sky - smoggy grey -->
+  <defs>
+    <radialGradient id="skySmog" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#7a7a7a"/>
+      <stop offset="100%" stop-color="#3a3a3a"/>
+    </radialGradient>
+    <radialGradient id="seaSmog" cx="50%" cy="60%" r="60%">
+      <stop offset="0%" stop-color="#4a5a6a"/>
+      <stop offset="100%" stop-color="#2a3a4a"/>
+    </radialGradient>
+    <filter id="blur2">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <filter id="blur4">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="360" height="640" fill="url(#skySmog)"/>
+
+  <!-- Smog clouds layer 1 -->
+  <ellipse cx="60" cy="80" rx="80" ry="35" fill="#8a8a8a" opacity="0.7" filter="url(#blur4)"/>
+  <ellipse cx="200" cy="60" rx="100" ry="40" fill="#909090" opacity="0.6" filter="url(#blur4)"/>
+  <ellipse cx="320" cy="90" rx="70" ry="30" fill="#7a7a7a" opacity="0.7" filter="url(#blur4)"/>
+
+  <!-- Smog clouds layer 2 -->
+  <ellipse cx="130" cy="120" rx="90" ry="30" fill="#6a6a6a" opacity="0.5" filter="url(#blur4)"/>
+  <ellipse cx="280" cy="140" rx="80" ry="28" fill="#888888" opacity="0.5" filter="url(#blur4)"/>
+
+  <!-- Pollution particles -->
+  <circle cx="80" cy="150" r="4" fill="#555" opacity="0.4"/>
+  <circle cx="160" cy="130" r="3" fill="#555" opacity="0.3"/>
+  <circle cx="240" cy="160" r="5" fill="#555" opacity="0.4"/>
+  <circle cx="300" cy="120" r="3" fill="#555" opacity="0.3"/>
+  <circle cx="50" cy="200" r="4" fill="#444" opacity="0.3"/>
+  <circle cx="330" cy="180" r="3" fill="#444" opacity="0.3"/>
+
+  <!-- Dead sun (barely visible) -->
+  <circle cx="290" cy="70" r="30" fill="#b0a030" opacity="0.2" filter="url(#blur4)"/>
+  <circle cx="290" cy="70" r="18" fill="#c8b040" opacity="0.15"/>
+
+  <!-- Sea -->
+  <ellipse cx="180" cy="560" rx="240" ry="120" fill="url(#seaSmog)"/>
+  <rect x="0" y="480" width="360" height="160" fill="#2a3a4a"/>
+
+  <!-- Sea waves (grey) -->
+  <path d="M0 490 Q45 480 90 490 Q135 500 180 490 Q225 480 270 490 Q315 500 360 490" fill="none" stroke="#3a4a5a" stroke-width="2" opacity="0.6"/>
+  <path d="M0 510 Q45 500 90 510 Q135 520 180 510 Q225 500 270 510 Q315 520 360 510" fill="none" stroke="#3a4a5a" stroke-width="2" opacity="0.5"/>
+  <path d="M0 530 Q45 520 90 530 Q135 540 180 530 Q225 520 270 530 Q315 540 360 530" fill="none" stroke="#3a4a5a" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Island base -->
+  <ellipse cx="180" cy="430" rx="160" ry="60" fill="#5a5040"/>
+  <ellipse cx="180" cy="420" rx="155" ry="55" fill="#6a6050"/>
+
+  <!-- Island ground (dead, brown-grey) -->
+  <ellipse cx="180" cy="415" rx="150" ry="50" fill="#7a7060"/>
+  <!-- Ground texture -->
+  <ellipse cx="120" cy="420" rx="40" ry="15" fill="#6a6050" opacity="0.5"/>
+  <ellipse cx="240" cy="425" rx="35" ry="12" fill="#6a6050" opacity="0.5"/>
+  <ellipse cx="180" cy="430" rx="30" ry="10" fill="#6a6050" opacity="0.4"/>
+
+  <!-- Dead trees / stumps -->
+  <!-- Stump 1 -->
+  <rect x="100" y="370" width="14" height="40" rx="3" fill="#5a4a30"/>
+  <ellipse cx="107" cy="370" rx="10" ry="6" fill="#4a3a20"/>
+  <!-- Stump 2 -->
+  <rect x="220" y="380" width="10" height="32" rx="3" fill="#5a4a30"/>
+  <ellipse cx="225" cy="380" rx="8" ry="5" fill="#4a3a20"/>
+  <!-- Stump 3 small -->
+  <rect x="155" y="390" width="8" height="22" rx="2" fill="#5a4a30"/>
+
+  <!-- Dead bush / rocks -->
+  <ellipse cx="145" cy="408" rx="18" ry="8" fill="#5a5040"/>
+  <ellipse cx="215" cy="412" rx="14" ry="6" fill="#5a5040"/>
+
+  <!-- Smoke/pollution rising from ground -->
+  <ellipse cx="180" cy="350" rx="15" ry="8" fill="#888" opacity="0.3" filter="url(#blur2)"/>
+  <ellipse cx="150" cy="320" rx="12" ry="6" fill="#888" opacity="0.25" filter="url(#blur2)"/>
+  <ellipse cx="210" cy="310" rx="10" ry="5" fill="#888" opacity="0.25" filter="url(#blur2)"/>
+
+  <!-- Floating trash in sea -->
+  <rect x="60" y="500" width="12" height="8" rx="1" fill="#8a7a50" opacity="0.6"/>
+  <rect x="290" y="515" width="8" height="5" rx="1" fill="#7a6a40" opacity="0.5"/>
+  <ellipse cx="320" cy="505" rx="6" ry="3" fill="#6a5a30" opacity="0.5"/>
+</svg>

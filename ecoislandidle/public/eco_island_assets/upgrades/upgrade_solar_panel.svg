@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="panelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a3a6a"/>
+      <stop offset="50%" stop-color="#2050a0"/>
+      <stop offset="100%" stop-color="#1a3070"/>
+    </linearGradient>
+    <linearGradient id="cellGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2060c0"/>
+      <stop offset="100%" stop-color="#1040a0"/>
+    </linearGradient>
+    <linearGradient id="poleGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#888"/>
+      <stop offset="40%" stop-color="#ccc"/>
+      <stop offset="100%" stop-color="#888"/>
+    </linearGradient>
+    <filter id="solarGlow">
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#60a0ff44"/>
+    </filter>
+    <filter id="panelShadow">
+      <feDropShadow dx="2" dy="3" stdDeviation="3" flood-color="#00000044"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#panelShadow)">
+    <!-- Pole -->
+    <rect x="60" y="90" width="8" height="30" rx="3" fill="url(#poleGrad)"/>
+    <!-- Base plate -->
+    <rect x="48" y="116" width="32" height="7" rx="3" fill="#aaa"/>
+    <rect x="52" y="118" width="24" height="4" rx="2" fill="#ccc"/>
+
+    <!-- Panel frame -->
+    <rect x="12" y="28" width="104" height="65" rx="5" fill="#444" transform="rotate(-8,64,60)"/>
+
+    <!-- Panel body -->
+    <rect x="14" y="30" width="100" height="61" rx="4" fill="url(#panelGrad)" transform="rotate(-8,64,60)" filter="url(#solarGlow)"/>
+
+    <!-- Solar cells grid (4x3) -->
+    <g transform="rotate(-8,64,60)">
+      <!-- Row 1 -->
+      <rect x="19" y="34" width="22" height="17" rx="2" fill="url(#cellGrad)"/>
+      <rect x="44" y="34" width="22" height="17" rx="2" fill="url(#cellGrad)"/>
+      <rect x="69" y="34" width="22" height="17" rx="2" fill="url(#cellGrad)"/>
+      <rect x="94" y="34" width="16" height="17" rx="2" fill="url(#cellGrad)"/>
+      <!-- Row 2 -->
+      <rect x="19" y="54" width="22" height="17" rx="2" fill="url(#cellGrad)"/>
+      <rect x="44" y="54" width="22" height="17" rx="2" fill="url(#cellGrad)"/>
+      <rect x="69" y="54" width="22" height="17" rx="2" fill="url(#cellGrad)"/>
+      <rect x="94" y="54" width="16" height="17" rx="2" fill="url(#cellGrad)"/>
+      <!-- Row 3 -->
+      <rect x="19" y="74" width="22" height="13" rx="2" fill="url(#cellGrad)"/>
+      <rect x="44" y="74" width="22" height="13" rx="2" fill="url(#cellGrad)"/>
+      <rect x="69" y="74" width="22" height="13" rx="2" fill="url(#cellGrad)"/>
+      <rect x="94" y="74" width="16" height="13" rx="2" fill="url(#cellGrad)"/>
+
+      <!-- Cell shine highlights -->
+      <rect x="20" y="35" width="10" height="5" rx="1" fill="white" opacity="0.12"/>
+      <rect x="45" y="35" width="10" height="5" rx="1" fill="white" opacity="0.12"/>
+      <rect x="70" y="35" width="10" height="5" rx="1" fill="white" opacity="0.12"/>
+      <rect x="95" y="35" width="7" height="5" rx="1" fill="white" opacity="0.12"/>
+      <rect x="20" y="55" width="10" height="5" rx="1" fill="white" opacity="0.12"/>
+      <rect x="45" y="55" width="10" height="5" rx="1" fill="white" opacity="0.12"/>
+      <rect x="70" y="55" width="10" height="5" rx="1" fill="white" opacity="0.12"/>
+      <rect x="20" y="75" width="10" height="4" rx="1" fill="white" opacity="0.12"/>
+
+      <!-- Grid lines -->
+      <line x1="41" y1="34" x2="41" y2="87" stroke="#0a2050" stroke-width="1" opacity="0.5"/>
+      <line x1="66" y1="34" x2="66" y2="87" stroke="#0a2050" stroke-width="1" opacity="0.5"/>
+      <line x1="91" y1="34" x2="91" y2="87" stroke="#0a2050" stroke-width="1" opacity="0.5"/>
+      <line x1="19" y1="51" x2="110" y2="51" stroke="#0a2050" stroke-width="1" opacity="0.5"/>
+      <line x1="19" y1="71" x2="110" y2="71" stroke="#0a2050" stroke-width="1" opacity="0.5"/>
+    </g>
+  </g>
+
+  <!-- Sun reflection / energy bolt -->
+  <g transform="translate(96,14)" opacity="0.9">
+    <!-- Lightning bolt = energy -->
+    <polygon points="6,0 2,10 7,10 1,22 10,8 5,8 10,0" fill="#ffe030"/>
+    <polygon points="6,0 2,10 7,10 1,22 10,8 5,8 10,0" fill="none" stroke="#ff9000" stroke-width="0.8"/>
+  </g>
+
+  <!-- Small sun -->
+  <circle cx="110" cy="12" r="8" fill="#ffe060" opacity="0.8"/>
+  <g stroke="#ffe060" stroke-width="1.5" opacity="0.6">
+    <line x1="110" y1="1" x2="110" y2="-3"/>
+    <line x1="119" y1="12" x2="123" y2="12"/>
+    <line x1="117" y1="5" x2="120" y2="2"/>
+    <line x1="117" y1="19" x2="120" y2="22"/>
+  </g>
+</svg>

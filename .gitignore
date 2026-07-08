@@ -1,0 +1,16 @@
+# Cartelle e file da ignorare
+node_modules/
+platforms/
+plugins/
+dist/
+build/
+bin/
+obj/
+__pycache__/
+.env
+*.key
+*.pem
+secrets.py
+config.json
+.DS_Store
+Thumbs.db

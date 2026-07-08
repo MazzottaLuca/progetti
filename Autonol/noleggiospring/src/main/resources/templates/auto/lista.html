@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogo Auto | AutoNol</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="navbar-brand">
+                    <span class="brand-icon">🚗</span>
+                    AutoNol
+                </a>
+                <button class="navbar-toggle" onclick="document.querySelector('.navbar-nav').classList.toggle('show')">☰</button>
+                <ul class="navbar-nav">
+                    <li><a th:href="@{/}"><span class="nav-icon">🏠</span> Home</a></li>
+                    <li><a th:href="@{/auto}" class="active"><span class="nav-icon">🚘</span> Auto</a></li>
+                    <li><a th:href="@{/clienti}"><span class="nav-icon">👥</span> Clienti</a></li>
+                    <li><a th:href="@{/noleggi}"><span class="nav-icon">📋</span> Noleggi</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="container">
+                <!-- Messaggi flash -->
+                <div th:if="${messaggio}" class="alert alert-success fade-in">
+                    <span>✅</span>
+                    <span th:text="${messaggio}"></span>
+                </div>
+
+                <!-- HEADER -->
+                <div class="section-header">
+                    <div>
+                        <h1 class="section-title">🚘 Catalogo Auto</h1>
+                        <p class="section-subtitle">Sfoglia la nostra flotta di veicoli</p>
+                    </div>
+                    <a th:href="@{/auto/nuovo}" class="btn btn-primary">
+                        ➕ Aggiungi Auto
+                    </a>
+                </div>
+
+                <!-- FILTRI -->
+                <div class="filtri-bar">
+                    <a th:href="@{/auto}" class="filtro-btn"
+                       th:classappend="${categoriaAttiva == null and ricercaAttiva == null ? 'active' : ''}">
+                        Tutte
+                    </a>
+                    <a th:each="cat : ${categorie}"
+                       th:href="@{/auto(categoria=${cat})}"
+                       th:text="${cat}"
+                       class="filtro-btn"
+                       th:classappend="${categoriaAttiva == cat ? 'active' : ''}">
+                        Categoria
+                    </a>
+
+                    <form th:action="@{/auto}" method="get" class="search-box">
+                        <input type="text" name="ricerca" placeholder="Cerca marca o modello..."
+                               th:value="${ricercaAttiva}">
+                        <button type="submit">Cerca</button>
+                    </form>
+                </div>
+
+                <!-- GRIGLIA AUTO -->
+                <div class="auto-grid fade-in">
+                    <div class="auto-card" th:each="auto : ${listaAuto}">
+                        <div class="auto-card-image">
+                            <img th:if="${auto.immagineUrl != null and !auto.immagineUrl.isEmpty()}"
+                                 th:src="${auto.immagineUrl}"
+                                 th:alt="${auto.marca + ' ' + auto.modello}"
+                                 onerror="this.parentElement.innerHTML='<div class=img-placeholder>🚗</div>'">
+                            <div th:if="${auto.immagineUrl == null or auto.immagineUrl.isEmpty()}" class="img-placeholder">🚗</div>
+                            <span class="category-badge" th:text="${auto.categoria}">Categoria</span>
+                            <span th:if="${auto.disponibile}" class="disponibilita-badge badge-disponibile">✓ Disponibile</span>
+                            <span th:unless="${auto.disponibile}" class="disponibilita-badge badge-noleggiata">✗ Noleggiata</span>
+                        </div>
+                        <div class="auto-card-body">
+                            <h3 class="auto-card-title" th:text="${auto.marca + ' ' + auto.modello}">Marca Modello</h3>
+                            <p class="auto-card-subtitle" th:text="${auto.descrizione != null ? (auto.descrizione.length() > 80 ? auto.descrizione.substring(0, 80) + '...' : auto.descrizione) : 'Veicolo disponibile'}">Descrizione</p>
+                            <div class="auto-card-info">
+                                <span>📅 <span th:text="${auto.anno}">2024</span></span>
+                                <span>🔖 <span th:text="${auto.targa}">AA000BB</span></span>
+                            </div>
+                            <div class="auto-card-footer">
+                                <div class="auto-price">
+                                    <span class="amount" th:text="'€ ' + ${#numbers.formatDecimal(auto.prezzoGiornaliero, 1, 2)}">€ 0.00</span>
+                                    <span class="period">al giorno</span>
+                                </div>
+                                <div class="action-group">
+                                    <a th:href="@{/auto/{id}(id=${auto.id})}" class="btn btn-primary btn-sm">
+                                        Dettagli
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stato vuoto -->
+                <div th:if="${#lists.isEmpty(listaAuto)}" class="empty-state">
+                    <div class="empty-icon">🔍</div>
+                    <h3 class="empty-title">Nessuna auto trovata</h3>
+                    <p class="empty-text">Prova a cambiare i filtri di ricerca.</p>
+                    <a th:href="@{/auto}" class="btn btn-secondary">Mostra Tutte</a>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <span class="footer-brand">🚗 AutoNol</span>
+                    <span class="footer-text">© 2024 AutoNol — Noleggio Auto Premium. Tutti i diritti riservati.</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

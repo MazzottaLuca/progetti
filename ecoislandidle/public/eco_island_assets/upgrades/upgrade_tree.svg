@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <radialGradient id="leafGrad" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#70cc50"/>
+      <stop offset="100%" stop-color="#2a7820"/>
+    </radialGradient>
+    <radialGradient id="trunkGrad" cx="30%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#8a6030"/>
+      <stop offset="100%" stop-color="#4a2a10"/>
+    </radialGradient>
+    <filter id="treeShadow">
+      <feDropShadow dx="2" dy="3" stdDeviation="3" flood-color="#00000044"/>
+    </filter>
+  </defs>
+
+  <!-- Drop shadow group -->
+  <g filter="url(#treeShadow)">
+    <!-- Trunk -->
+    <rect x="54" y="78" width="20" height="36" rx="6" fill="url(#trunkGrad)"/>
+    <!-- Trunk details (bark lines) -->
+    <path d="M58 82 Q63 90 58 100" stroke="#3a2010" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M68 85 Q63 94 68 102" stroke="#3a2010" stroke-width="1.5" fill="none" opacity="0.5"/>
+
+    <!-- Roots -->
+    <path d="M54 110 Q46 114 40 118" stroke="#4a2a10" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M74 110 Q82 114 88 118" stroke="#4a2a10" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M58 112 Q55 118 52 124" stroke="#4a2a10" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M70 112 Q73 118 76 124" stroke="#4a2a10" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+    <!-- Foliage - back layer (darker) -->
+    <ellipse cx="64" cy="55" rx="38" ry="32" fill="#2a7820"/>
+    <!-- Foliage - mid layer -->
+    <ellipse cx="64" cy="48" rx="34" ry="30" fill="#3a9030"/>
+    <!-- Foliage - side blobs -->
+    <ellipse cx="38" cy="58" rx="22" ry="20" fill="#329028"/>
+    <ellipse cx="90" cy="56" rx="20" ry="18" fill="#2a8020"/>
+    <!-- Foliage - top layer (bright) -->
+    <ellipse cx="64" cy="40" rx="28" ry="26" fill="url(#leafGrad)"/>
+    <!-- Foliage top highlight -->
+    <ellipse cx="58" cy="34" rx="16" ry="12" fill="#90e060" opacity="0.4"/>
+  </g>
+
+  <!-- Fruit (apples) -->
+  <circle cx="50" cy="52" r="6" fill="#e03030"/>
+  <circle cx="50" cy="52" r="5" fill="#f04040"/>
+  <path d="M50 46 Q52 42 55 44" stroke="#3a7020" stroke-width="1.5" fill="none"/>
+
+  <circle cx="78" cy="48" r="5" fill="#e03030"/>
+  <circle cx="78" cy="48" r="4" fill="#f04040"/>
+  <path d="M78 43 Q80 39 83 41" stroke="#3a7020" stroke-width="1.5" fill="none"/>
+
+  <circle cx="64" cy="56" r="5.5" fill="#e03030"/>
+  <circle cx="64" cy="56" r="4.5" fill="#f04040"/>
+
+  <!-- Leaf details on top -->
+  <path d="M55 28 Q64 18 73 28" stroke="#5ab840" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M48 38 Q42 28 50 24" stroke="#5ab840" stroke-width="1.5" fill="none" opacity="0.5"/>
+</svg>

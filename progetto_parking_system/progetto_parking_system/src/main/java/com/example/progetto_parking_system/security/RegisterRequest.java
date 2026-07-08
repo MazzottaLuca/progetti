@@ -1,0 +1,63 @@
+package com.example.progetto_parking_system.security;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+/**
+ * Oggetto DTO per la richiesta di registrazione di un nuovo utente.
+ * Contiene le credenziali e le scelte iniziali di abbonamento e veicolo.
+ */
+public class RegisterRequest {
+
+    @NotBlank(message = "Il campo username è obbligatorio")
+    @Size(min = 4, max = 20, message = "Lo username deve avere tra 4 e 20 caratteri")
+    private String username;
+
+    @NotBlank(message = "La password è obbligatoria")
+    @Size(min = 6, message = "La password deve avere almeno 6 caratteri")
+    private String password;
+
+    private String subscriptionType; // e.g. MONTHLY, QUARTERLY, YEARLY
+    private String vehicleType;      // CAR, MOTORBIKE, ELECTRIC, HANDICAPPED
+    private String language;         // it, en
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getSubscriptionType() {
+        return subscriptionType;
+    }
+
+    public void setSubscriptionType(String subscriptionType) {
+        this.subscriptionType = subscriptionType;
+    }
+
+    public String getVehicleType() {
+        return vehicleType;
+    }
+
+    public void setVehicleType(String vehicleType) {
+        this.vehicleType = vehicleType;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+}

@@ -1,0 +1,47 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    
+    // Forzatura radicale: si applica ai plugin di Gradle PRIMA che vengano scaricati
+    configurations.all {
+        resolutionStrategy {
+            force 'org.bouncycastle:bcprov-jdk18on:1.74'
+        }
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.2.1'
+        classpath 'com.google.gms:google-services:4.4.0'
+    }
+}
+
+apply from: "variables.gradle"
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    
+    configurations.all {
+        resolutionStrategy {
+            // La vecchia forzatura per Bouncy Castle che sta funzionando alla grande
+            force 'org.bouncycastle:bcprov-jdk18on:1.74'
+            
+            // Nuova forzatura: costringiamo tutto il progetto a usare la stdlib 1.8.22
+            force 'org.jetbrains.kotlin:kotlin-stdlib:1.8.22'
+        }
+        
+        // Diciamo a Gradle di ignorare completamente i vecchi moduli duplicati separati
+        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk7'
+        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk8'
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

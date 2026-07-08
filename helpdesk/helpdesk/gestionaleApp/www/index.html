@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'">
+    <title>Gestionale App</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Benvenuto su HelpDesk</h1>
+
+        <!-- Bottone con stile identico agli altri link -->
+        <button id="goToLogin" class="button-link">Accedi</button>
+    </div>
+
+    <script>
+        // Navigazione alla pagina login
+        document.getElementById("goToLogin").addEventListener("click", () => {
+            window.location.href = "login.html";
+        });
+    </script>
+</body>
+</html>

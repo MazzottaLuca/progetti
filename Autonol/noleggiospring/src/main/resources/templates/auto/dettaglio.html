@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${auto.marca + ' ' + auto.modello + ' | AutoNol'}">Dettaglio Auto | AutoNol</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="navbar-brand">
+                    <span class="brand-icon">🚗</span>
+                    AutoNol
+                </a>
+                <button class="navbar-toggle" onclick="document.querySelector('.navbar-nav').classList.toggle('show')">☰</button>
+                <ul class="navbar-nav">
+                    <li><a th:href="@{/}"><span class="nav-icon">🏠</span> Home</a></li>
+                    <li><a th:href="@{/auto}" class="active"><span class="nav-icon">🚘</span> Auto</a></li>
+                    <li><a th:href="@{/clienti}"><span class="nav-icon">👥</span> Clienti</a></li>
+                    <li><a th:href="@{/noleggi}"><span class="nav-icon">📋</span> Noleggi</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="container">
+                <!-- BREADCRUMB -->
+                <div class="breadcrumb">
+                    <a th:href="@{/}">Home</a>
+                    <span class="separator">›</span>
+                    <a th:href="@{/auto}">Catalogo Auto</a>
+                    <span class="separator">›</span>
+                    <span class="current" th:text="${auto.marca + ' ' + auto.modello}">Auto</span>
+                </div>
+
+                <!-- DETTAGLIO -->
+                <div class="dettaglio-container fade-in">
+                    <!-- Immagine -->
+                    <div class="dettaglio-image">
+                        <img th:if="${auto.immagineUrl != null and !auto.immagineUrl.isEmpty()}"
+                             th:src="${auto.immagineUrl}"
+                             th:alt="${auto.marca + ' ' + auto.modello}"
+                             onerror="this.parentElement.innerHTML='<div class=img-placeholder style=height:400px>🚗</div>'">
+                        <div th:if="${auto.immagineUrl == null or auto.immagineUrl.isEmpty()}" class="img-placeholder" style="height:400px;">🚗</div>
+                    </div>
+
+                    <!-- Info -->
+                    <div class="dettaglio-info">
+                        <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+                            <span th:if="${auto.disponibile}" class="badge badge-disponibile" style="font-size:0.8rem;">✓ Disponibile</span>
+                            <span th:unless="${auto.disponibile}" class="badge badge-noleggiata" style="font-size:0.8rem;">✗ Noleggiata</span>
+                            <span class="badge" th:text="${auto.categoria}"
+                                  style="background:rgba(99,102,241,0.15); color:#a5b4fc; border:1px solid rgba(99,102,241,0.3);">Categoria</span>
+                        </div>
+
+                        <h1 class="dettaglio-title" th:text="${auto.marca + ' ' + auto.modello}">Marca Modello</h1>
+                        <p class="dettaglio-subtitle" th:text="${'Anno ' + auto.anno + ' • Targa ' + auto.targa}">Sottotitolo</p>
+
+                        <!-- Specifiche -->
+                        <div class="dettaglio-specs">
+                            <div class="spec-item">
+                                <div class="spec-label">Marca</div>
+                                <div class="spec-value" th:text="${auto.marca}">Marca</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Modello</div>
+                                <div class="spec-value" th:text="${auto.modello}">Modello</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Anno</div>
+                                <div class="spec-value" th:text="${auto.anno}">2024</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Targa</div>
+                                <div class="spec-value" th:text="${auto.targa}">AA000BB</div>
+                            </div>
+                        </div>
+
+                        <!-- Prezzo -->
+                        <div class="dettaglio-price">
+                            <div class="price-amount" th:text="'€ ' + ${#numbers.formatDecimal(auto.prezzoGiornaliero, 1, 2)}">€ 0.00</div>
+                            <div class="price-label">al giorno</div>
+                        </div>
+
+                        <!-- Descrizione -->
+                        <p th:if="${auto.descrizione != null}" class="dettaglio-description" th:text="${auto.descrizione}">Descrizione</p>
+
+                        <!-- Azioni -->
+                        <div class="dettaglio-actions">
+                            <a th:if="${auto.disponibile}" th:href="@{/noleggi/nuovo(autoId=${auto.id})}" class="btn btn-primary">
+                                📋 Prenota Ora
+                            </a>
+                            <a th:href="@{/auto/modifica/{id}(id=${auto.id})}" class="btn btn-secondary">
+                                ✏️ Modifica
+                            </a>
+                            <form th:action="@{/auto/elimina/{id}(id=${auto.id})}" method="post" style="display:inline;"
+                                  onsubmit="return confirm('Sei sicuro di voler eliminare questa auto?')">
+                                <button type="submit" class="btn btn-danger">
+                                    🗑️ Elimina
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <span class="footer-brand">🚗 AutoNol</span>
+                    <span class="footer-text">© 2024 AutoNol — Noleggio Auto Premium. Tutti i diritti riservati.</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

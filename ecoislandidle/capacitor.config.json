@@ -1,0 +1,6 @@
+{
+  "appId": "com.luca.ecoisland",
+  "appName": "EcoIslandIdle",
+  "webDir": "public",
+  "bundledWebRuntime": false
+}

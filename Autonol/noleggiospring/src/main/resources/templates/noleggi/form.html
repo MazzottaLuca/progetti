@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuovo Noleggio | AutoNol</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="navbar-brand">
+                    <span class="brand-icon">🚗</span>
+                    AutoNol
+                </a>
+                <button class="navbar-toggle" onclick="document.querySelector('.navbar-nav').classList.toggle('show')">☰</button>
+                <ul class="navbar-nav">
+                    <li><a th:href="@{/}"><span class="nav-icon">🏠</span> Home</a></li>
+                    <li><a th:href="@{/auto}"><span class="nav-icon">🚘</span> Auto</a></li>
+                    <li><a th:href="@{/clienti}"><span class="nav-icon">👥</span> Clienti</a></li>
+                    <li><a th:href="@{/noleggi}" class="active"><span class="nav-icon">📋</span> Noleggi</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="container">
+                <!-- BREADCRUMB -->
+                <div class="breadcrumb">
+                    <a th:href="@{/}">Home</a>
+                    <span class="separator">›</span>
+                    <a th:href="@{/noleggi}">Noleggi</a>
+                    <span class="separator">›</span>
+                    <span class="current">Nuovo Noleggio</span>
+                </div>
+
+                <div class="form-container fade-in">
+                    <h1 class="form-title">➕ Nuovo Noleggio</h1>
+                    <p class="form-subtitle">Compila i dati per creare un nuovo noleggio. Il prezzo verrà calcolato automaticamente.</p>
+
+                    <form th:action="@{/noleggi/salva}" method="post">
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label for="autoId">Seleziona Auto</label>
+                                <select id="autoId" name="autoId" required>
+                                    <option value="">Scegli un veicolo disponibile...</option>
+                                    <option th:each="auto : ${listaAuto}"
+                                            th:value="${auto.id}"
+                                            th:data-prezzo="${auto.prezzoGiornaliero}"
+                                            th:text="${auto.marca + ' ' + auto.modello + ' (' + auto.targa + ') — € ' + #numbers.formatDecimal(auto.prezzoGiornaliero, 1, 2) + '/giorno'}"
+                                            th:selected="${noleggio.auto != null and noleggio.auto.id == auto.id}">
+                                        Auto
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="clienteId">Seleziona Cliente</label>
+                                <select id="clienteId" name="clienteId" required>
+                                    <option value="">Scegli un cliente...</option>
+                                    <option th:each="cliente : ${listaClienti}"
+                                            th:value="${cliente.id}"
+                                            th:text="${cliente.nome + ' ' + cliente.cognome + ' — ' + cliente.email}">
+                                        Cliente
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dataInizio">Data Inizio</label>
+                                <input type="date" id="dataInizio" name="dataInizio" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dataFine">Data Fine</label>
+                                <input type="date" id="dataFine" name="dataFine" required>
+                            </div>
+                        </div>
+
+                        <!-- Anteprima prezzo -->
+                        <div id="pricePreview" style="display:none; margin-bottom:24px;">
+                            <div class="dettaglio-price">
+                                <div class="price-label">Prezzo stimato</div>
+                                <div class="price-amount" id="prezzoStimato">€ 0.00</div>
+                                <div class="price-label" id="giorniLabel">0 giorni</div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                📋 Crea Noleggio
+                            </button>
+                            <a th:href="@{/noleggi}" class="btn btn-secondary btn-lg">
+                                ← Annulla
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <span class="footer-brand">🚗 AutoNol</span>
+                    <span class="footer-text">© 2024 AutoNol — Noleggio Auto Premium. Tutti i diritti riservati.</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Calcolo prezzo in tempo reale
+        const autoSelect = document.getElementById('autoId');
+        const dataInizio = document.getElementById('dataInizio');
+        const dataFine = document.getElementById('dataFine');
+        const pricePreview = document.getElementById('pricePreview');
+        const prezzoStimato = document.getElementById('prezzoStimato');
+        const giorniLabel = document.getElementById('giorniLabel');
+
+        function calcolaPrezzo() {
+            const autoId = autoSelect.value;
+            const inizio = new Date(dataInizio.value);
+            const fine = new Date(dataFine.value);
+
+            if (autoId && dataInizio.value && dataFine.value && fine > inizio) {
+                const selectedOption = autoSelect.options[autoSelect.selectedIndex];
+                const prezzoAuto = parseFloat(selectedOption.getAttribute('data-prezzo'));
+
+                const giorni = Math.ceil((fine - inizio) / (1000 * 60 * 60 * 24));
+                const prezzo = prezzoAuto * giorni;
+
+                prezzoStimato.textContent = '€ ' + prezzo.toFixed(2);
+                giorniLabel.textContent = giorni + (giorni === 1 ? ' giorno' : ' giorni');
+                pricePreview.style.display = 'block';
+            } else {
+                pricePreview.style.display = 'none';
+            }
+        }
+
+        autoSelect.addEventListener('change', calcolaPrezzo);
+        dataInizio.addEventListener('change', calcolaPrezzo);
+        dataFine.addEventListener('change', calcolaPrezzo);
+
+        // Imposta data minima a oggi
+        const oggi = new Date().toISOString().split('T')[0];
+        dataInizio.setAttribute('min', oggi);
+        dataFine.setAttribute('min', oggi);
+
+        dataInizio.addEventListener('change', function() {
+            dataFine.setAttribute('min', this.value);
+        });
+    </script>
+</body>
+</html>

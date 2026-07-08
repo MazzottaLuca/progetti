@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AutoNol - Il tuo servizio di noleggio auto premium. Scegli tra la nostra flotta di veicoli per ogni esigenza.">
+    <title>AutoNol — Noleggio Auto Premium</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="navbar-brand">
+                    <span class="brand-icon">🚗</span>
+                    AutoNol
+                </a>
+                <button class="navbar-toggle" onclick="document.querySelector('.navbar-nav').classList.toggle('show')">☰</button>
+                <ul class="navbar-nav">
+                    <li><a th:href="@{/}" class="active"><span class="nav-icon">🏠</span> Home</a></li>
+                    <li><a th:href="@{/auto}"><span class="nav-icon">🚘</span> Auto</a></li>
+                    <li><a th:href="@{/clienti}"><span class="nav-icon">👥</span> Clienti</a></li>
+                    <li><a th:href="@{/noleggi}"><span class="nav-icon">📋</span> Noleggi</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        ⚡ Noleggio facile e veloce
+                    </div>
+                    <h1 class="hero-title">
+                        La tua auto ideale,<br>
+                        <span class="gradient-text">sempre a portata di mano.</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Scopri la nostra flotta di veicoli premium per ogni esigenza: dalle city car alle sportive, dai SUV ai furgoni. Prenota in pochi click.
+                    </p>
+                    <div class="hero-actions">
+                        <a th:href="@{/auto}" class="btn btn-primary btn-lg">
+                            🚘 Esplora il Catalogo
+                        </a>
+                        <a th:href="@{/noleggi/nuovo}" class="btn btn-secondary btn-lg">
+                            📋 Prenota Ora
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTENUTO PRINCIPALE -->
+        <main class="main-content">
+            <div class="container">
+                <!-- Messaggi flash -->
+                <div th:if="${messaggio}" class="alert alert-success fade-in">
+                    <span>✅</span>
+                    <span th:text="${messaggio}"></span>
+                </div>
+
+                <!-- STATISTICHE -->
+                <div class="stats-grid fade-in">
+                    <div class="stat-card">
+                        <div class="stat-icon">🚗</div>
+                        <div class="stat-number" th:text="${totaleAuto}">0</div>
+                        <div class="stat-label">Auto in Flotta</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-number" th:text="${autoDisponibiliCount}">0</div>
+                        <div class="stat-label">Disponibili Ora</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-number" th:text="${totaleClienti}">0</div>
+                        <div class="stat-label">Clienti Registrati</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📋</div>
+                        <div class="stat-number" th:text="${noleggiAttivi}">0</div>
+                        <div class="stat-label">Noleggi Attivi</div>
+                    </div>
+                </div>
+
+                <!-- AUTO IN EVIDENZA -->
+                <div class="section-header" style="margin-top: 40px;">
+                    <div>
+                        <h2 class="section-title">🔥 Auto in Evidenza</h2>
+                        <p class="section-subtitle">Scopri i veicoli disponibili per il noleggio</p>
+                    </div>
+                    <a th:href="@{/auto}" class="btn btn-secondary">
+                        Vedi Tutte →
+                    </a>
+                </div>
+
+                <div class="auto-grid fade-in">
+                    <div class="auto-card" th:each="auto, stat : ${autoDisponibili}" th:if="${stat.index < 6}">
+                        <div class="auto-card-image">
+                            <img th:if="${auto.immagineUrl != null and !auto.immagineUrl.isEmpty()}"
+                                 th:src="${auto.immagineUrl}"
+                                 th:alt="${auto.marca + ' ' + auto.modello}"
+                                 onerror="this.parentElement.innerHTML='<div class=img-placeholder>🚗</div>'">
+                            <div th:if="${auto.immagineUrl == null or auto.immagineUrl.isEmpty()}" class="img-placeholder">🚗</div>
+                            <span class="category-badge" th:text="${auto.categoria}">Categoria</span>
+                            <span class="disponibilita-badge badge-disponibile">✓ Disponibile</span>
+                        </div>
+                        <div class="auto-card-body">
+                            <h3 class="auto-card-title" th:text="${auto.marca + ' ' + auto.modello}">Marca Modello</h3>
+                            <p class="auto-card-subtitle" th:text="${auto.descrizione != null ? auto.descrizione : 'Veicolo disponibile per il noleggio'}">Descrizione</p>
+                            <div class="auto-card-info">
+                                <span>📅 <span th:text="${auto.anno}">2024</span></span>
+                                <span>🔖 <span th:text="${auto.targa}">AA000BB</span></span>
+                            </div>
+                            <div class="auto-card-footer">
+                                <div class="auto-price">
+                                    <span class="amount" th:text="'€ ' + ${#numbers.formatDecimal(auto.prezzoGiornaliero, 1, 2)}">€ 0.00</span>
+                                    <span class="period">al giorno</span>
+                                </div>
+                                <a th:href="@{/auto/{id}(id=${auto.id})}" class="btn btn-primary btn-sm">
+                                    Dettagli →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stato vuoto -->
+                <div th:if="${#lists.isEmpty(autoDisponibili)}" class="empty-state">
+                    <div class="empty-icon">🚗</div>
+                    <h3 class="empty-title">Nessuna auto disponibile</h3>
+                    <p class="empty-text">Al momento non ci sono auto disponibili nel catalogo.</p>
+                    <a th:href="@{/auto/nuovo}" class="btn btn-primary">
+                        ➕ Aggiungi la Prima Auto
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <span class="footer-brand">🚗 AutoNol</span>
+                    <span class="footer-text">© 2024 AutoNol — Noleggio Auto Premium. Tutti i diritti riservati.</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

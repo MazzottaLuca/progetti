@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 56" width="180" height="56">
+  <defs>
+    <linearGradient id="buyBtnGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#70d040"/>
+      <stop offset="100%" stop-color="#308020"/>
+    </linearGradient>
+    <linearGradient id="buyBtnPressed" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#508030"/>
+      <stop offset="100%" stop-color="#206010"/>
+    </linearGradient>
+    <filter id="btnDropShadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#1a600844"/>
+    </filter>
+  </defs>
+
+  <!-- Button shadow -->
+  <rect x="4" y="8" width="172" height="44" rx="22" fill="#1a5010" opacity="0.4" filter="url(#btnDropShadow)"/>
+
+  <!-- Button body -->
+  <rect x="2" y="4" width="176" height="46" rx="23" fill="#206010"/>
+  <rect x="3" y="4" width="174" height="44" rx="22" fill="url(#buyBtnGrad)"/>
+
+  <!-- Shine top -->
+  <rect x="12" y="7" width="120" height="16" rx="8" fill="white" opacity="0.2"/>
+
+  <!-- Bottom edge (depth) -->
+  <rect x="4" y="44" width="172" height="6" rx="3" fill="#206010" opacity="0.5"/>
+
+  <!-- Label area (center) - leaf icon + "ACQUISTA" text -->
+  <!-- Small leaf icon left of text -->
+  <g transform="translate(44,28)">
+    <path d="M0,-9 C6,-6 9,-1 8,5 C6,9 2,11 0,12 C-2,11 -6,9 -8,5 C-9,-1 -6,-6 0,-9 Z" fill="#c8f870"/>
+    <line x1="0" y1="-8" x2="0" y2="11" stroke="#2a8010" stroke-width="1.2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Text -->
+  <text x="100" y="33" text-anchor="middle" font-family="'Arial Rounded MT Bold', Arial, sans-serif"
+        font-size="16" font-weight="bold" fill="white" letter-spacing="1">ACQUISTA</text>
+</svg>

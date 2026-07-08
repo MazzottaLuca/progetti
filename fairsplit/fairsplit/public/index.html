@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FairSplit - Divisione Spese</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="icon" href="/icons/icon-192.svg" sizes="192x192">
+    <link rel="apple-touch-icon" href="/icons/icon-512.svg">
+</head>
+<body>
+    <div class="container">
+        <h1>FairSplit 💸</h1>
+        
+        <section class="card">
+            <h2>Lista persone</h2>
+            <div class="input-group">
+                <input type="text" id="userName" placeholder="nome">
+                <button onclick="addUser()">Aggiungi</button>
+            </div>
+            <div id="userList" class="chip-container"></div>
+        </section>
+
+        <section class="card">
+            <h2>Aggiungi Spesa</h2>
+            <div class="expense-form">
+                <input type="text" id="expDesc" placeholder="Descrizione (es. Affitto, Spesa)">
+                <input type="number" id="expAmount" placeholder="Importo (€)" step="0.01">
+                
+                <div class="select-group">
+                    <label>Pagato da (seleziona uno o più):</label>
+                    <select id="expPaidBy" multiple size="4"></select>
+                </div>
+
+                <div class="select-group">
+                    <label>Divisa tra:</label>
+                    <div id="expSplitBetween" class="checkbox-group"></div>
+                </div>
+                
+                <button onclick="addExpense()" class="btn-primary">Registra Spesa</button>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Storico Spese</h2>
+            <div id="expenseList" class="list-container"></div>
+        </section>
+
+        <section class="card result-card">
+            <h2>Conguagli Finali</h2>
+            <div id="balances" class="balances-container"></div>
+            <div id="debts" class="debts-container"></div>
+        </section>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

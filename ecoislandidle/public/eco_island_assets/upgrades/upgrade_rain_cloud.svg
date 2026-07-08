@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <radialGradient id="cloudGrad" cx="40%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#d8f0ff"/>
+      <stop offset="100%" stop-color="#90c8f0"/>
+    </radialGradient>
+    <linearGradient id="rainGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#60b0e8"/>
+      <stop offset="100%" stop-color="#2080c0"/>
+    </linearGradient>
+    <filter id="cloudShadow">
+      <feDropShadow dx="2" dy="3" stdDeviation="4" flood-color="#1040a044"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#cloudShadow)">
+    <!-- Cloud body -->
+    <ellipse cx="64" cy="52" rx="50" ry="28" fill="url(#cloudGrad)"/>
+    <ellipse cx="42" cy="46" rx="28" ry="24" fill="url(#cloudGrad)"/>
+    <ellipse cx="82" cy="44" rx="26" ry="22" fill="url(#cloudGrad)"/>
+    <ellipse cx="60" cy="38" rx="24" ry="20" fill="#e8f8ff"/>
+    <!-- Cloud highlight -->
+    <ellipse cx="48" cy="34" rx="16" ry="10" fill="white" opacity="0.5"/>
+
+    <!-- Rain drops -->
+    <!-- Drop 1 -->
+    <path d="M38,78 Q35,88 38,96 Q41,103 44,96 Q47,88 44,78 Q41,72 38,78 Z" fill="url(#rainGrad)"/>
+    <!-- Drop 2 -->
+    <path d="M58,82 Q55,92 58,100 Q61,107 64,100 Q67,92 64,82 Q61,76 58,82 Z" fill="url(#rainGrad)"/>
+    <!-- Drop 3 -->
+    <path d="M78,78 Q75,88 78,96 Q81,103 84,96 Q87,88 84,78 Q81,72 78,78 Z" fill="url(#rainGrad)"/>
+    <!-- Drop 4 smaller -->
+    <path d="M48,92 Q46,99 48,105 Q50,110 52,105 Q54,99 52,92 Q50,87 48,92 Z" fill="url(#rainGrad)" opacity="0.7"/>
+    <path d="M68,90 Q66,97 68,103 Q70,108 72,103 Q74,97 72,90 Q70,85 68,90 Z" fill="url(#rainGrad)" opacity="0.7"/>
+
+    <!-- Drop highlights -->
+    <ellipse cx="39" cy="83" rx="3" ry="4" fill="white" opacity="0.4" transform="rotate(-15,39,83)"/>
+    <ellipse cx="59" cy="87" rx="3" ry="4" fill="white" opacity="0.4" transform="rotate(-15,59,87)"/>
+    <ellipse cx="79" cy="83" rx="3" ry="4" fill="white" opacity="0.4" transform="rotate(-15,79,83)"/>
+  </g>
+
+  <!-- Lightning inside cloud (energy) -->
+  <g transform="translate(64,48)" opacity="0.6">
+    <polygon points="4,-10 0,2 5,2 1,14 8,0 3,0 7,-10" fill="#ffe040"/>
+  </g>
+</svg>

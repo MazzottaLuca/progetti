@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 640" width="360" height="640">
+  <defs>
+    <radialGradient id="skyGreen" cx="50%" cy="25%" r="75%">
+      <stop offset="0%" stop-color="#a8daf0"/>
+      <stop offset="60%" stop-color="#60b0e0"/>
+      <stop offset="100%" stop-color="#3080c0"/>
+    </radialGradient>
+    <radialGradient id="seaGreen" cx="50%" cy="60%" r="60%">
+      <stop offset="0%" stop-color="#2090c0"/>
+      <stop offset="100%" stop-color="#0a6090"/>
+    </radialGradient>
+    <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff8c0" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#f0c030" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softBlur">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+
+  <!-- Sky - beautiful clear blue -->
+  <rect width="360" height="640" fill="url(#skyGreen)"/>
+
+  <!-- Sun glow -->
+  <circle cx="290" cy="75" r="55" fill="url(#sunGlow)"/>
+  <!-- Sun -->
+  <circle cx="290" cy="75" r="30" fill="#ffe060" filter="url(#glow)"/>
+  <circle cx="290" cy="75" r="22" fill="#fff090"/>
+  <!-- Sun rays -->
+  <g transform="translate(290,75)" stroke="#ffe060" stroke-width="2.5" opacity="0.6">
+    <line x1="0" y1="-40" x2="0" y2="-50"/>
+    <line x1="28" y1="-28" x2="35" y2="-35"/>
+    <line x1="40" y1="0" x2="50" y2="0"/>
+    <line x1="28" y1="28" x2="35" y2="35"/>
+    <line x1="0" y1="40" x2="0" y2="50"/>
+    <line x1="-28" y1="28" x2="-35" y2="35"/>
+    <line x1="-40" y1="0" x2="-50" y2="0"/>
+    <line x1="-28" y1="-28" x2="-35" y2="-35"/>
+  </g>
+
+  <!-- Fluffy white clouds -->
+  <g opacity="0.9">
+    <ellipse cx="80" cy="80" rx="50" ry="22" fill="white" filter="url(#softBlur)"/>
+    <ellipse cx="95" cy="68" rx="32" ry="20" fill="white" filter="url(#softBlur)"/>
+    <ellipse cx="60" cy="72" rx="28" ry="16" fill="white" filter="url(#softBlur)"/>
+  </g>
+  <g opacity="0.85">
+    <ellipse cx="200" cy="95" rx="45" ry="18" fill="white" filter="url(#softBlur)"/>
+    <ellipse cx="212" cy="83" rx="28" ry="17" fill="white" filter="url(#softBlur)"/>
+    <ellipse cx="185" cy="88" rx="22" ry="14" fill="white" filter="url(#softBlur)"/>
+  </g>
+
+  <!-- Rainbow (subtle) -->
+  <path d="M20 220 Q180 100 340 220" fill="none" stroke="#f06060" stroke-width="3" opacity="0.12"/>
+  <path d="M25 228 Q180 108 335 228" fill="none" stroke="#f0c030" stroke-width="3" opacity="0.10"/>
+  <path d="M30 236 Q180 116 330 236" fill="none" stroke="#60d060" stroke-width="3" opacity="0.10"/>
+  <path d="M35 244 Q180 124 325 244" fill="none" stroke="#4080f0" stroke-width="3" opacity="0.09"/>
+
+  <!-- Sea - crystal clear -->
+  <rect x="0" y="480" width="360" height="160" fill="#1080b0"/>
+  <ellipse cx="180" cy="560" rx="250" ry="130" fill="url(#seaGreen)" opacity="0.9"/>
+
+  <!-- Sea sparkles -->
+  <circle cx="50" cy="510" r="2" fill="white" opacity="0.5"/>
+  <circle cx="120" cy="525" r="1.5" fill="white" opacity="0.4"/>
+  <circle cx="200" cy="498" r="2" fill="white" opacity="0.5"/>
+  <circle cx="290" cy="515" r="1.5" fill="white" opacity="0.4"/>
+  <circle cx="340" cy="530" r="2" fill="white" opacity="0.5"/>
+
+  <!-- Sea waves (clear blue) -->
+  <path d="M0 490 Q45 480 90 490 Q135 500 180 490 Q225 480 270 490 Q315 500 360 490" fill="none" stroke="#60c0e0" stroke-width="2" opacity="0.8"/>
+  <path d="M0 512 Q45 502 90 512 Q135 522 180 512 Q225 502 270 512 Q315 522 360 512" fill="none" stroke="#60c0e0" stroke-width="2" opacity="0.7"/>
+  <path d="M0 534 Q45 524 90 534 Q135 544 180 534 Q225 524 270 534 Q315 544 360 534" fill="none" stroke="#60c0e0" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Island base (lush) -->
+  <ellipse cx="180" cy="435" rx="162" ry="62" fill="#2a5a20"/>
+  <ellipse cx="180" cy="422" rx="158" ry="57" fill="#3a7030"/>
+
+  <!-- Ground - rich green -->
+  <ellipse cx="180" cy="416" rx="152" ry="52" fill="#4a9040"/>
+  <!-- Grass variation -->
+  <ellipse cx="120" cy="412" rx="50" ry="20" fill="#5aa048" opacity="0.7"/>
+  <ellipse cx="250" cy="420" rx="45" ry="18" fill="#3a8838" opacity="0.7"/>
+  <ellipse cx="180" cy="428" rx="35" ry="13" fill="#4a9840" opacity="0.6"/>
+
+  <!-- Large tree center -->
+  <rect x="170" y="340" width="20" height="75" rx="5" fill="#5a3a18"/>
+  <ellipse cx="180" cy="318" rx="42" ry="38" fill="#2a7020"/>
+  <ellipse cx="160" cy="330" rx="28" ry="24" fill="#3a8030"/>
+  <ellipse cx="200" cy="328" rx="26" ry="22" fill="#2a7020"/>
+  <ellipse cx="180" cy="308" rx="30" ry="26" fill="#3a8828"/>
+  <!-- Tree fruit/highlights -->
+  <circle cx="165" cy="318" r="5" fill="#e04030" opacity="0.8"/>
+  <circle cx="192" cy="312" r="4" fill="#e04030" opacity="0.7"/>
+  <circle cx="178" cy="325" r="3.5" fill="#f07040" opacity="0.7"/>
+
+  <!-- Left palm tree -->
+  <rect x="95" y="360" width="12" height="55" rx="4" fill="#6a4a20" transform="rotate(-8,101,415)"/>
+  <ellipse cx="90" cy="348" rx="32" ry="15" fill="#3a8030" transform="rotate(-20,90,348)"/>
+  <ellipse cx="108" cy="342" rx="28" ry="12" fill="#4a9038" transform="rotate(10,108,342)"/>
+  <ellipse cx="76" cy="355" rx="24" ry="10" fill="#3a8030" transform="rotate(-35,76,355)"/>
+
+  <!-- Right smaller tree -->
+  <rect x="248" y="368" width="10" height="48" rx="3" fill="#5a3a18"/>
+  <ellipse cx="253" cy="352" rx="25" ry="22" fill="#3a8828"/>
+  <ellipse cx="240" cy="362" rx="18" ry="15" fill="#4a9030"/>
+  <ellipse cx="265" cy="358" rx="16" ry="14" fill="#3a8020"/>
+
+  <!-- Ground flowers and bushes -->
+  <!-- Bushes -->
+  <ellipse cx="140" cy="412" rx="20" ry="11" fill="#5aaa48"/>
+  <ellipse cx="220" cy="418" rx="17" ry="9" fill="#5aaa48"/>
+  <ellipse cx="155" cy="421" rx="14" ry="8" fill="#4a9840"/>
+
+  <!-- Flowers scattered -->
+  <!-- Sunflower-like -->
+  <circle cx="148" cy="406" r="5" fill="#f5cc00"/>
+  <circle cx="148" cy="406" r="3" fill="#c07820"/>
+  <!-- Red flower -->
+  <circle cx="200" cy="410" r="4" fill="#e03050"/>
+  <circle cx="200" cy="410" r="2" fill="#a00020"/>
+  <!-- White flower -->
+  <circle cx="215" cy="415" r="3.5" fill="white"/>
+  <circle cx="215" cy="415" r="1.5" fill="#f0e050"/>
+  <!-- Pink flower -->
+  <circle cx="165" cy="418" r="3" fill="#e070a0"/>
+  <circle cx="165" cy="418" r="1.5" fill="#a03060"/>
+  <!-- Yellow flower -->
+  <circle cx="232" cy="412" r="3" fill="#f0d030"/>
+  <circle cx="232" cy="412" r="1.5" fill="#c07010"/>
+
+  <!-- Butterfly (tiny) -->
+  <g transform="translate(270,360)" opacity="0.8">
+    <ellipse cx="-8" cy="0" rx="8" ry="5" fill="#f060c0" transform="rotate(-30,-8,0)"/>
+    <ellipse cx="8" cy="0" rx="8" ry="5" fill="#f060c0" transform="rotate(30,8,0)"/>
+    <ellipse cx="-5" cy="4" rx="5" ry="3" fill="#c040a0" transform="rotate(-30,-5,4)"/>
+    <ellipse cx="5" cy="4" rx="5" ry="3" fill="#c040a0" transform="rotate(30,5,4)"/>
+    <line x1="0" y1="-2" x2="0" y2="7" stroke="#333" stroke-width="1"/>
+  </g>
+
+  <!-- Bird silhouettes far away -->
+  <g stroke="#2060a0" stroke-width="1.5" fill="none" opacity="0.5">
+    <path d="M100 170 Q105 165 110 170"/>
+    <path d="M115 160 Q120 155 125 160"/>
+    <path d="M135 173 Q140 168 145 173"/>
+  </g>
+</svg>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${isModifica ? 'Modifica Auto' : 'Nuova Auto'} + ' | AutoNol'">Form Auto | AutoNol</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="navbar-brand">
+                    <span class="brand-icon">🚗</span>
+                    AutoNol
+                </a>
+                <button class="navbar-toggle" onclick="document.querySelector('.navbar-nav').classList.toggle('show')">☰</button>
+                <ul class="navbar-nav">
+                    <li><a th:href="@{/}"><span class="nav-icon">🏠</span> Home</a></li>
+                    <li><a th:href="@{/auto}" class="active"><span class="nav-icon">🚘</span> Auto</a></li>
+                    <li><a th:href="@{/clienti}"><span class="nav-icon">👥</span> Clienti</a></li>
+                    <li><a th:href="@{/noleggi}"><span class="nav-icon">📋</span> Noleggi</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="container">
+                <!-- BREADCRUMB -->
+                <div class="breadcrumb">
+                    <a th:href="@{/}">Home</a>
+                    <span class="separator">›</span>
+                    <a th:href="@{/auto}">Catalogo Auto</a>
+                    <span class="separator">›</span>
+                    <span class="current" th:text="${isModifica ? 'Modifica Auto' : 'Nuova Auto'}">Form</span>
+                </div>
+
+                <div class="form-container fade-in">
+                    <h1 class="form-title" th:text="${isModifica ? '✏️ Modifica Auto' : '➕ Nuova Auto'}">Form Auto</h1>
+                    <p class="form-subtitle" th:text="${isModifica ? 'Modifica i dati del veicolo' : 'Inserisci i dati del nuovo veicolo'}">Sottotitolo</p>
+
+                    <form th:action="@{/auto/salva}" th:object="${auto}" method="post">
+                        <input type="hidden" th:field="*{id}">
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="marca">Marca</label>
+                                <input type="text" id="marca" th:field="*{marca}" placeholder="es. Fiat" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="modello">Modello</label>
+                                <input type="text" id="modello" th:field="*{modello}" placeholder="es. 500" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="anno">Anno</label>
+                                <input type="number" id="anno" th:field="*{anno}" placeholder="es. 2024" min="1990" max="2030" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="targa">Targa</label>
+                                <input type="text" id="targa" th:field="*{targa}" placeholder="es. AA000BB" maxlength="10" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="categoria">Categoria</label>
+                                <select id="categoria" th:field="*{categoria}" required>
+                                    <option value="">Seleziona categoria...</option>
+                                    <option th:each="cat : ${categorie}" th:value="${cat}" th:text="${cat}">Categoria</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="prezzoGiornaliero">Prezzo Giornaliero (€)</label>
+                                <input type="number" id="prezzoGiornaliero" th:field="*{prezzoGiornaliero}" placeholder="es. 35.00" step="0.01" min="0" required>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="immagineUrl">URL Immagine</label>
+                                <input type="url" id="immagineUrl" th:field="*{immagineUrl}" placeholder="https://esempio.com/foto.jpg">
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="descrizione">Descrizione</label>
+                                <textarea id="descrizione" th:field="*{descrizione}" placeholder="Descrivi il veicolo..." rows="3"></textarea>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <div class="form-check">
+                                    <input type="checkbox" id="disponibile" th:field="*{disponibile}">
+                                    <label for="disponibile" style="margin-bottom:0; text-transform:none; font-size:0.95rem;">Disponibile per il noleggio</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                💾 Salva Auto
+                            </button>
+                            <a th:href="@{/auto}" class="btn btn-secondary btn-lg">
+                                ← Annulla
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <span class="footer-brand">🚗 AutoNol</span>
+                    <span class="footer-text">© 2024 AutoNol — Noleggio Auto Premium. Tutti i diritti riservati.</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

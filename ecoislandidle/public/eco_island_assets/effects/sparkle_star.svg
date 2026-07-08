@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" width="60" height="60">
+  <defs>
+    <filter id="sparkGlow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <g transform="translate(30,30)" filter="url(#sparkGlow)">
+    <!-- Main 4-point star -->
+    <path d="M0,-22 L4,-4 L22,0 L4,4 L0,22 L-4,4 L-22,0 L-4,-4 Z" fill="#ffe040"/>
+
+    <!-- Secondary 4-point star rotated 45deg -->
+    <path d="M0,-16 L3,-3 L16,0 L3,3 L0,16 L-3,3 L-16,0 L-3,-3 Z"
+          fill="#a0f030" transform="rotate(45)"/>
+
+    <!-- Center dot -->
+    <circle cx="0" cy="0" r="4" fill="white"/>
+
+    <!-- Tiny rays -->
+    <line x1="0" y1="-26" x2="0" y2="-22" stroke="#ffe040" stroke-width="2" stroke-linecap="round"/>
+    <line x1="26" y1="0" x2="22" y2="0" stroke="#ffe040" stroke-width="2" stroke-linecap="round"/>
+    <line x1="0" y1="26" x2="0" y2="22" stroke="#ffe040" stroke-width="2" stroke-linecap="round"/>
+    <line x1="-26" y1="0" x2="-22" y2="0" stroke="#ffe040" stroke-width="2" stroke-linecap="round"/>
+  </g>
+</svg>

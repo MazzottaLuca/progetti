@@ -1,0 +1,1 @@
+@echo off\necho.\necho Installazione dipendenze per FairSplit...\necho.\nnpm install\necho.\necho Installazione completata!\necho.\necho Puoi ora avviare l'app con: npm start\necho Oppure in modalita' sviluppo con: npm run dev\npause\n

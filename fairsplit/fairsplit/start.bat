@@ -1,0 +1,1 @@
+@echo off\necho.\necho Avvio di FairSplit - Divisione Spese...\necho.\nnpm start\npause\n

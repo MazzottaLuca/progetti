@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' data: gap: 'unsafe-eval' 'unsafe-inline';
+               connect-src 'self' http://192.168.1.7:8080 http://10.0.2.2:8080;
+               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+               font-src 'self' https://fonts.gstatic.com;"
+    />
+    <title>Emote</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;800&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- SCHERMATA LOGIN -->
+    <div id="screen-login" class="screen active">
+      <div class="auth-bg">
+        <div class="auth-blob blob1"></div>
+        <div class="auth-blob blob2"></div>
+      </div>
+      <div class="auth-container">
+        <div class="logo-block">
+          <span class="logo-icon">💬</span>
+          <h1 class="logo-title">emote</h1>
+          <p class="logo-sub">reagisci. conversa. connettiti.</p>
+        </div>
+        <div class="card">
+          <div id="login-error" class="error-msg hidden"></div>
+          <div class="input-group">
+            <label>Nome utente</label>
+            <input
+              type="text"
+              id="login-username"
+              placeholder="il tuo username"
+              autocomplete="username"
+            />
+          </div>
+          <div class="input-group">
+            <label>Password</label>
+            <input
+              type="password"
+              id="login-password"
+              placeholder="••••••••"
+              autocomplete="current-password"
+            />
+          </div>
+          <button class="btn-primary" id="btn-login">Accedi</button>
+          <p class="switch-text">
+            Non hai un account?
+            <span class="link" id="go-register">Registrati</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCHERMATA REGISTRAZIONE -->
+    <div id="screen-register" class="screen">
+      <div class="auth-bg">
+        <div class="auth-blob blob1"></div>
+        <div class="auth-blob blob2"></div>
+      </div>
+      <div class="auth-container">
+        <div class="logo-block">
+          <span class="logo-icon">✨</span>
+          <h1 class="logo-title">emote</h1>
+          <p class="logo-sub">crea il tuo account</p>
+        </div>
+        <div class="card">
+          <div id="register-error" class="error-msg hidden"></div>
+          <div class="input-group">
+            <label>Nome utente</label>
+            <input
+              type="text"
+              id="reg-username"
+              placeholder="scegli uno username"
+            />
+          </div>
+          <div class="input-group">
+            <label>Email</label>
+            <input type="email" id="reg-email" placeholder="tua@email.com" />
+          </div>
+          <div class="input-group">
+            <label>Password</label>
+            <input
+              type="password"
+              id="reg-password"
+              placeholder="min. 6 caratteri"
+            />
+          </div>
+          <button class="btn-primary" id="btn-register">Crea account</button>
+          <p class="switch-text">
+            Hai già un account? <span class="link" id="go-login">Accedi</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCHERMATA HOME (feed commenti) -->
+    <div id="screen-home" class="screen">
+      <!-- HEADER -->
+      <header class="app-header">
+        <span class="header-logo">emote</span>
+        <div class="header-right">
+          <span id="header-username" class="header-user"></span>
+          <button class="btn-icon" id="btn-logout" title="Esci">⏻</button>
+        </div>
+      </header>
+
+      <!-- FAB: nuovo commento -->
+      <button class="fab" id="btn-fab">+</button>
+
+      <!-- FEED -->
+      <main class="feed" id="feed">
+        <div class="feed-loading" id="feed-loading">
+          <div class="spinner"></div>
+          <span>Caricamento...</span>
+        </div>
+      </main>
+
+      <!-- MODAL NUOVO COMMENTO -->
+      <div class="modal-overlay hidden" id="modal-nuovo">
+        <div class="modal-card">
+          <div class="modal-header">
+            <span>Nuovo commento</span>
+            <button class="btn-icon" id="modal-close">✕</button>
+          </div>
+          <textarea
+            id="nuovo-testo"
+            placeholder="Scrivi qualcosa..."
+            rows="4"
+          ></textarea>
+          <div id="nuovo-error" class="error-msg hidden"></div>
+          <button class="btn-primary" id="btn-invia-commento">Pubblica</button>
+        </div>
+      </div>
+
+      <!-- MODAL REAZIONE (emote picker) -->
+      <div class="modal-overlay hidden" id="modal-reazione">
+        <div class="modal-card">
+          <div class="modal-header">
+            <span>Reagisci con...</span>
+            <button class="btn-icon" id="reazione-close">✕</button>
+          </div>
+          <p class="commento-preview" id="reazione-preview"></p>
+          <div class="emote-grid">
+            <button class="emote-btn" data-emote="😂">😂</button>
+            <button class="emote-btn" data-emote="👍">👍</button>
+            <button class="emote-btn" data-emote="❤️">❤️</button>
+            <button class="emote-btn" data-emote="😡">😡</button>
+            <button class="emote-btn" data-emote="😢">😢</button>
+            <button class="emote-btn" data-emote="😮">😮</button>
+            <button class="emote-btn" data-emote="🤔">🤔</button>
+            <button class="emote-btn" data-emote="🔥">🔥</button>
+            <button class="emote-btn" data-emote="👏">👏</button>
+            <button class="emote-btn" data-emote="👎">👎</button>
+          </div>
+          <div id="reazione-loading" class="hidden reazione-loading">
+            <div class="spinner"></div>
+            <span>L'AI sta generando la risposta...</span>
+          </div>
+          <div id="reazione-risultato" class="hidden reazione-risultato"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="cordova.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

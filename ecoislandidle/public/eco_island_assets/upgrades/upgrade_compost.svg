@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="binBody" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5a9a40"/>
+      <stop offset="100%" stop-color="#2a6020"/>
+    </linearGradient>
+    <linearGradient id="binLid" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6aaa50"/>
+      <stop offset="100%" stop-color="#3a7030"/>
+    </linearGradient>
+    <filter id="binShadow">
+      <feDropShadow dx="2" dy="3" stdDeviation="3" flood-color="#00000044"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#binShadow)">
+    <!-- Bin body (trapezoid) -->
+    <path d="M28 52 L36 112 L92 112 L100 52 Z" fill="url(#binBody)" rx="4"/>
+    <!-- Bin shine -->
+    <path d="M36 56 L40 100 L52 100 L46 56 Z" fill="white" opacity="0.12"/>
+
+    <!-- Bin ridges -->
+    <path d="M30 70 L98 70" stroke="#2a6020" stroke-width="2" opacity="0.4"/>
+    <path d="M32 85 L96 85" stroke="#2a6020" stroke-width="2" opacity="0.4"/>
+    <path d="M34 100 L94 100" stroke="#2a6020" stroke-width="2" opacity="0.4"/>
+
+    <!-- Lid -->
+    <rect x="22" y="44" width="84" height="12" rx="5" fill="url(#binLid)"/>
+    <!-- Lid shine -->
+    <rect x="26" y="45" width="60" height="5" rx="3" fill="white" opacity="0.25"/>
+
+    <!-- Handle -->
+    <rect x="55" y="32" width="18" height="16" rx="7" fill="none" stroke="#3a7030" stroke-width="5"/>
+    <rect x="55" y="32" width="18" height="16" rx="7" fill="none" stroke="#5a9a50" stroke-width="3"/>
+
+    <!-- Recycling symbol on front -->
+    <g transform="translate(64,82) scale(0.9)">
+      <text text-anchor="middle" y="8" font-size="28" fill="white" opacity="0.85" font-family="sans-serif">♻</text>
+    </g>
+
+    <!-- Bottom base -->
+    <rect x="32" y="109" width="64" height="6" rx="3" fill="#1a4010"/>
+  </g>
+
+  <!-- Small leaves/compost coming out top -->
+  <ellipse cx="50" cy="44" rx="8" ry="5" fill="#8adc60" transform="rotate(-20,50,44)" opacity="0.9"/>
+  <ellipse cx="78" cy="42" rx="7" ry="4" fill="#6acc40" transform="rotate(15,78,42)" opacity="0.9"/>
+  <ellipse cx="64" cy="40" rx="6" ry="4" fill="#9aec70" transform="rotate(-5,64,40)" opacity="0.9"/>
+
+  <!-- Tiny worm -->
+  <path d="M42 48 Q46 44 50 48 Q54 52 58 48" fill="none" stroke="#c07040" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+</svg>

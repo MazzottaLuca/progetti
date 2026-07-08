@@ -1,0 +1,27 @@
+{
+  "name": "eco-island-clicker",
+  "version": "1.0.0",
+  "description": "Idle Game Offline per Android con Capacitor",
+  "main": "public/index.html",
+  "scripts": {
+    "dev": "echo 'Open public/index.html in browser'",
+    "build": "echo 'Build completed'",
+    "android": "capacitor build android",
+    "sync": "capacitor sync"
+  },
+  "dependencies": {
+    "@capacitor/android": "^5.7.8",
+    "@capacitor/cli": "^6.2.1",
+    "@capacitor/core": "^5.7.8"
+  },
+  "keywords": [
+    "idle",
+    "game",
+    "clicker",
+    "offline",
+    "android",
+    "capacitor"
+  ],
+  "author": "Luca",
+  "license": "MIT"
+}
