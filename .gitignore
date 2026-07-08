@@ -1,16 +1,57 @@
-# Cartelle e file da ignorare
-node_modules/
-platforms/
-plugins/
-dist/
-build/
-bin/
-obj/
-__pycache__/
+# =========================================================================
+# 🚫 CHIAVI API, CREDENZIALI E VARIABILI D'AMBIENTE (SICUREZZA PRIMA DI TUTTO)
+# =========================================================================
 .env
-*.key
+.env.local
+.env.*.local
 *.pem
-secrets.py
+*.key
+*.secret
 config.json
+credentials.json
+
+# =========================================================================
+# ☕ JAVA (MAVEN / GRADLE) - BLOCCA I FILE COMPILATI COME I .JAR
+# =========================================================================
+**/target/
+**/build/
+**/out/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+
+# =========================================================================
+# 📱 CORDOVA & MOBILE DEVELOPMENT
+# =========================================================================
+**/platforms/
+**/plugins/
+**/www/
+*.apk
+*.aab
+*.ipa
+.pfx
+
+# =========================================================================
+# 🌐 JAVASCRIPT & NODE (DIPENDENZE WEB)
+# =========================================================================
+**/node_modules/
+**/dist/
+.npm
+*.log
+
+# =========================================================================
+# 💻 FILE DEGLI IDE E DEL SISTEMA OPERATIVO (PULIZIA REPOSITORY)
+# =========================================================================
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
 .DS_Store
 Thumbs.db
